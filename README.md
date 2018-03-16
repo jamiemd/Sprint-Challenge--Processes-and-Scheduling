@@ -6,12 +6,26 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a
    standard Unix system. Briefly explain what each of these states mean.
+   
+   There are six states which are:
+    0: the system is shut down
+    1: admin state that deals with managing the system
+    2: partial multiple user state which allows multiple user logins but no file sharing
+    3: multiuser state which allows multiple user logins and file sharing
+    4: unused state
+    5: default state for graphical logins
+    6: shuts down and reboots the system
+    S: single user state where only one user can be logged in
+
 
 2. What is a Zombie Process? How does it get created? How does it get destroyed?
+   It's a process that has completed execution but still has an entry in the process table. It happens when a child process where it's parent process is still waiting for it's exit status and once that is done it gets taken out of the process table. 
 
 3. Describe the job of the Scheduler in the OS in general.
+   The job of the scheduler is to execute processes in the most efficient time. Jobs with the highest priority are at the highest queue and jobs that take the longest to complete are at the bottom of the queue but all need to be completed at some point. 
 
 4. Describe the benefits of the MLFQ over a plain Round-Robin scheduler.
+   MLFQ benefits are that it goes through higher level processes faster since they're high priority and round-robin schedulers allocates the same amount of time for every process.  
 
 ## Programming Exercise: The Lambda School Shell (`lssh`)
 
