@@ -88,26 +88,26 @@ int main(void)
             continue;
         }
 
-        pid_t pid = fork();
-
-        char *args[] = {
-            "ls",
-            "-la",
-            NULL};
-
-        if (fork() == 0)
-        {
-            execv("/bin/ls", args);
-        }
-        else
-        {
-            wait(NULL);
-        }
-
         // Exit the shell if args[0] is the built-in "exit" command
         if (strcmp(args[0], "exit") == 0)
         {
             break;
+        }
+
+        pid_t pid = fork();
+
+        if (pid == -1)
+        {
+            return;
+        }
+        else if (pid == 0)
+        {
+            execvp(args[0], args);
+        }
+        else
+        {
+            wait(NULL);
+            return;
         }
 
 #if DEBUG
